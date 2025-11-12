@@ -38,7 +38,7 @@ function FeedbackForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="bg-white p-6 rounded-xl shadow space-y-4"
+      className="bg-gray-500 p-6 rounded-xl shadow space-y-4"
     >
       <div>
         <label className="block mb-1 font-medium">Member IDD</label>

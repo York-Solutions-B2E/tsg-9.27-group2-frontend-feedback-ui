@@ -6,8 +6,8 @@ function App() {
   const [view, setView] = useState<"submit" | "list">("submit");
 
   return (
-    <div className="min-h-screen bg-green-50 text-gray-100 w-screen flex flex-col">
-      <header className="p-4 shadow bg-white flex justify-between items-center">
+    <div className="min-h-screen bg-gray-600 text-gray-100 w-screen flex flex-col">
+      <header className="p-4 shadow bg-gray-400 flex justify-between items-center">
         <h1 className="text-xl font-semibold text-blue-600">
           Provider Feedback Portal
         </h1>
