@@ -42,7 +42,7 @@ services:
       - "8080:8080" # required so the frontend can call the API
 
   kafka:
-    image: confluentinc/confluent-local:latest
+    image: confluentinc/confluent-local:latestt
     container_name: kafka
     ports:
       - "9092:9092"
