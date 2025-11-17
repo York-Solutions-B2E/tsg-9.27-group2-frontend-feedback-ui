@@ -41,7 +41,7 @@ function FeedbackForm() {
       className="bg-gray-500 p-6 rounded-xl shadow space-y-4"
     >
       <div>
-        <label className="block mb-1 font-medium">Member IDD</label>
+        <label className="block mb-1 font-medium">Member ID</label>
         <input
           name="memberId"
           value={form.memberId}
