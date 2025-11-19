@@ -39,7 +39,7 @@ function FeedbackForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="bg-gray-800 p-6 rounded-xl shadow space-y-4"
+      className="bg-gray-800 p-6 rounded-xl shadow space-y-4 min-w-full"
     >
       <div>
         <label className="block mb-1 ">Member ID</label>
@@ -91,7 +91,7 @@ function FeedbackForm() {
           value={form.comment}
           onChange={handleChange}
           className="w-full bg-gray-700 text-gray-400 rounded p-2 focus:outline-teal-200 "
-          maxLength={200}
+          //   maxLength={200}
         />
       </div>
 
@@ -103,9 +103,13 @@ function FeedbackForm() {
       </button>
 
       {status === "success" && (
-        <p className="text-green-600 mt-2">Feedback submitted successfully!</p>
+        <p className="text-green-100 mt-2 bg-green-700 p-4 rounded">
+          Feedback submitted successfully!
+        </p>
       )}
-      {status === "error" && <p className="text-red-600 mt-2">{error}</p>}
+      {status === "error" && (
+        <p className="text-red-400 mt-2 bg-red-900 rounded p-4">{error}</p>
+      )}
     </form>
   );
 }
