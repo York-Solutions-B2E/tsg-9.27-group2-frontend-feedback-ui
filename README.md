@@ -91,7 +91,8 @@ All services will come up using a shared Docker network defined in the frontend 
 # API Endpoints
 
 Swagger UI
-http://localhost:8080/swagger-ui/index.html
+Producer: http://localhost:8080/swagger-ui/index.html
+Consumer: http://localhost:8081/swagger-ui/index.html
 
 Base Path `http://localhost:8080/api/v1`
 
