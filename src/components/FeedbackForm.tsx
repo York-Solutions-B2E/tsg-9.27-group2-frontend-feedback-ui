@@ -24,7 +24,7 @@ function FeedbackForm() {
     e.preventDefault();
     setStatus("idle");
     setError(null);
-
+    console.log(form);
     try {
       await submitFeedback(form);
       setStatus("success");
@@ -32,45 +32,48 @@ function FeedbackForm() {
     } catch (err: any) {
       setStatus("error");
       setError(err.message || "Submission failed");
+      console.log(err);
     }
   };
 
   return (
     <form
       onSubmit={handleSubmit}
-      className="bg-gray-500 p-6 rounded-xl shadow space-y-4"
+      className="bg-gray-800 p-6 rounded-xl shadow space-y-4"
     >
       <div>
-        <label className="block mb-1 font-medium">Member ID</label>
+        <label className="block mb-1 ">Member ID</label>
         <input
+          placeholder="m-123"
           name="memberId"
           value={form.memberId}
           onChange={handleChange}
-          className="w-full border rounded p-2"
-          required
-          maxLength={36}
+          className="w-full bg-gray-700 text-gray-400 rounded p-2 focus:outline-teal-200 "
+          //   required
+          //   maxLength={36}
         />
       </div>
 
       <div>
-        <label className="block mb-1 font-medium">Provider Name</label>
+        <label className="block mb-1 ">Provider Name</label>
         <input
+          placeholder="Dr. Michael"
           name="providerName"
           value={form.providerName}
           onChange={handleChange}
-          className="w-full border rounded p-2"
+          className="w-full bg-gray-700 text-gray-400 rounded p-2 focus:outline-teal-200 "
           required
           maxLength={80}
         />
       </div>
 
       <div>
-        <label className="block mb-1 font-medium">Rating (1–5)</label>
+        <label className="block mb-1 ">Rating (1–5)</label>
         <select
           name="rating"
           value={form.rating}
           onChange={handleChange}
-          className="w-full border rounded p-2"
+          className="w-full bg-gray-700 text-gray-400 rounded p-2 focus:outline-teal-200 "
         >
           {[1, 2, 3, 4, 5].map((r) => (
             <option key={r} value={r}>
@@ -81,12 +84,13 @@ function FeedbackForm() {
       </div>
 
       <div>
-        <label className="block mb-1 font-medium">Comment</label>
+        <label className="block mb-1 ">Comment</label>
         <textarea
+          placeholder="m-123"
           name="comment"
           value={form.comment}
           onChange={handleChange}
-          className="w-full border rounded p-2"
+          className="w-full bg-gray-700 text-gray-400 rounded p-2 focus:outline-teal-200 "
           maxLength={200}
         />
       </div>

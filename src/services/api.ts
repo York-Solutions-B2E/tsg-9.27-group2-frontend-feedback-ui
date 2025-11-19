@@ -10,36 +10,32 @@ export async function submitFeedback(payload: FeedbackRequest) {
   });
 
   if (!res.ok) {
-    const error = await res.json().catch(() => ({}));
-    throw new Error(error.message || "Failed to submit feedback");
+    const errorBody = await res.json().catch(() => ({}));
+
+    // backend returns: { errors: [{ field, message }] }
+    const message =
+      errorBody?.errors?.[0]?.message || "Failed to submit feedback";
+
+    throw new Error(message);
   }
 
   return res.json();
 }
-// const mockFeedbacks: Feedback[] = [
-//   {
-//     id: "1",
-//     memberId: "m-123",
-//     providerName: "Dr. Smith",
-//     rating: 4,
-//     comment: "Great experience",
-//     submittedAt: new Date().toISOString(),
-//   },
-//   {
-//     id: "2",
-//     memberId: "m-123",
-//     providerName: "Dr. Jones",
-//     rating: 5,
-//     comment: "Excellent service",
-//     submittedAt: new Date().toISOString(),
-//   },
-// ];
 
 export const getFeedbackByMember = async (memberId: string) => {
-  //   return mockFeedbacks.filter((f) => f.memberId === memberId);
+  // return mockFeedbacks.filter((f) => f.memberId === memberId);
 
   const res = await fetch(`${BASE_URL}/feedback?memberId=${memberId}`);
-  if (!res.ok) throw new Error("Error fetching feedback");
+
+  if (!res.ok) {
+    const errorBody = await res.json().catch(() => ({}));
+
+    const message =
+      errorBody?.errors?.[0]?.message || "Error fetching feedback";
+
+    console.log(message);
+    throw new Error(message);
+  }
 
   return await res.json();
 };
