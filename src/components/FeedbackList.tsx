@@ -3,6 +3,7 @@ import { getFeedbackById, getFeedbackByMember } from "../services/api";
 import type { Feedback } from "../types/feedback";
 import { AiFillStar } from "react-icons/ai";
 import { BsClipboard2XFill } from "react-icons/bs";
+import { MdOutlineClear } from "react-icons/md";
 
 function FeedbackList() {
   const [memberId, setMemberId] = useState("");
@@ -45,16 +46,20 @@ function FeedbackList() {
           />
           <button
             onClick={fetchFeedbackByMember}
-            className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded cursor-pointer"
+            disabled={!memberId.trim()}
+            className="px-4 py-2 rounded text-white bg-blue-500 hover:bg-blue-600 cursor-pointer disabled:bg-gray-500 disabled:hover:bg-gray-500 disabled:cursor-not-allowed"
           >
             Search
           </button>
           <button
             type="reset"
-            onClick={() => setFeedbacks([])}
+            onClick={() => {
+              setFeedbacks([]);
+              setMemberId("");
+            }}
             className="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded cursor-pointer"
           >
-            Reset
+            <MdOutlineClear />
           </button>
         </div>
 
@@ -73,8 +78,8 @@ function FeedbackList() {
               className="p-4 rounded-xl bg-gray-750/60 border border-gray-700 hover:border-gray-500 transition-colors shadow-sm"
             >
               <div className="flex items-center justify-between">
-                <p className="font-semibold text-gray-200 break-words">
-                  {f.providerName}
+                <p className=" text-gray-200 break-words">
+                  Provider Name: <span>{f.providerName}</span>
                 </p>
                 <span className="text-yellow-400 font-medium flex">
                   {/* {"⭐".repeat(+f.rating)} */}
@@ -86,13 +91,18 @@ function FeedbackList() {
 
               {f.comment && (
                 <p className="mt-1 text-gray-400 break-words whitespace-normal leading-relaxed">
-                  {f.comment}
+                  Comment: {f.comment}
+                </p>
+              )}
+              {f.id && (
+                <p className="mt-1 text-gray-400 break-words whitespace-normal leading-relaxed">
+                  Id: {f.id}
                 </p>
               )}
 
               <div className="mt-3 flex items-center justify-between text-xs text-gray-500">
                 <p className="break-all">Member: {f.memberId}</p>
-                <p>{new Date(f.submittedAt).toLocaleDateString()}</p>
+                <p>{new Date(f.submittedAt).toDateString()}</p>
               </div>
             </li>
           ))}
@@ -110,7 +120,8 @@ function FeedbackList() {
           />
           <button
             onClick={fetchFeedbackById}
-            className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded cursor-pointer"
+            disabled={!feedbackId.trim()}
+            className="px-4 py-2 rounded text-white bg-blue-500 hover:bg-blue-600 cursor-pointer disabled:bg-gray-500 disabled:hover:bg-gray-500 disabled:cursor-not-allowed"
           >
             Search
           </button>

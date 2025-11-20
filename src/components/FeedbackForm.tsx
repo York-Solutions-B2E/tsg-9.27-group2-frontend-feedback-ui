@@ -12,6 +12,14 @@ function FeedbackForm() {
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
   const [error, setError] = useState<string | null>(null);
 
+  const ratingLabels: Record<number, string> = {
+    1: "Terrible",
+    2: "Poor",
+    3: "Average",
+    4: "Good",
+    5: "Excellent",
+  };
+
   const handleChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
@@ -77,7 +85,7 @@ function FeedbackForm() {
         >
           {[1, 2, 3, 4, 5].map((r) => (
             <option key={r} value={r}>
-              {r}
+              {r} - {ratingLabels[r]}
             </option>
           ))}
         </select>
@@ -103,12 +111,14 @@ function FeedbackForm() {
       </button>
 
       {status === "success" && (
-        <p className="text-green-100 mt-2 bg-green-700 p-4 rounded">
+        <p className="border-x-4 border-solid border-x-green-700 text-center text-green-400 mt-2 bg-gray-700 p-4 rounded">
           Feedback submitted successfully!
         </p>
       )}
       {status === "error" && (
-        <p className="text-red-400 mt-2 bg-red-900 rounded p-4">{error}</p>
+        <p className="border-x-4 border-solid border-x-red-700 text-center text-red-400 mt-2 bg-gray-700 rounded p-4">
+          {error}
+        </p>
       )}
     </form>
   );
