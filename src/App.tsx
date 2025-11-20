@@ -13,7 +13,7 @@ function App() {
         {/* <h1 className="text-xl font-semibold text-blue-600">Feedback Portal</h1> */}
         <nav className="space-x-4 flex gap-4">
           <button
-            className={`px-3 py-4  cursor-pointer  ${
+            className={`px-3 py-4 cursor-pointer ${
               view === "submit"
                 ? "border-b-2 border-solid border-blue-500 text-white"
                 : "hover:text-gray-500"
@@ -36,7 +36,7 @@ function App() {
         </nav>
       </header>
 
-      <main className="p-6 min-h-screen w-[65%] rounded-xl bg-gray-900">
+      <main className="p-6 min-h-screen min-w-[70%] rounded-xl bg-gray-900">
         {view === "submit" ? <SubmitFeedbackPage /> : <MyFeedbackPage />}
       </main>
     </div>

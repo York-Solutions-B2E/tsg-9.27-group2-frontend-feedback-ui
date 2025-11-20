@@ -39,3 +39,19 @@ export const getFeedbackByMember = async (memberId: string) => {
 
   return await res.json();
 };
+
+export const getFeedbackById = async (id: string) => {
+  const res = await fetch(`${BASE_URL}/feedback/${id}`);
+
+  if (!res.ok) {
+    const errorBody = await res.json().catch(() => ({}));
+
+    const message =
+      errorBody?.errors?.[0]?.message || "Error fetching feedback";
+
+    console.log(message);
+    throw new Error(message);
+  }
+
+  return await res.json();
+};

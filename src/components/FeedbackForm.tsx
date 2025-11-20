@@ -49,8 +49,8 @@ function FeedbackForm() {
           value={form.memberId}
           onChange={handleChange}
           className="w-full bg-gray-700 text-gray-400 rounded p-2 focus:outline-teal-200 "
-          //   required
-          //   maxLength={36}
+          required
+          maxLength={36}
         />
       </div>
 
@@ -91,7 +91,7 @@ function FeedbackForm() {
           value={form.comment}
           onChange={handleChange}
           className="w-full bg-gray-700 text-gray-400 rounded p-2 focus:outline-teal-200 "
-          //   maxLength={200}
+          maxLength={200}
         />
       </div>
 
